@@ -12,7 +12,6 @@ class Input extends StatefulWidget {
   final TextEditingController inputController;
   final bool obscureText;
   final String hintText;
-  //final String inputFormatters;
 
   @override
   State<Input> createState() => _InputState();
@@ -20,6 +19,7 @@ class Input extends StatefulWidget {
 
 class _InputState extends State<Input> {
   bool _showError = false;
+  bool securePassword = true;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -38,7 +38,7 @@ class _InputState extends State<Input> {
           padding: EdgeInsets.all(screenHeight * 0.002),
           child: TextField(
             controller: widget.inputController,
-            obscureText: widget.obscureText,
+            obscureText: securePassword,
             onChanged: (value) {
               if (value.length < 6 && value.isNotEmpty) {
                 widget.obscureText
@@ -61,7 +61,7 @@ class _InputState extends State<Input> {
                   ? const Icon(Icons.email_rounded)
                   : widget.hintText == "Enter Password" ||
                           widget.hintText == "Confirme Password"
-                      ? const Icon(Icons.password_rounded)
+                      ? const Icon(Icons.security_rounded)
                       : const Icon(
                           Icons.person_2_rounded,
                         ),
@@ -73,9 +73,14 @@ class _InputState extends State<Input> {
               suffixIcon: widget.obscureText == true
                   ? GestureDetector(
                       onTap: () {
-                        //widget.obscureText = widget.obscureText;
+                        setState(() {
+                          securePassword = !securePassword;
+                        });
                       },
-                      child: const Icon(Icons.security_rounded),)
+                      child: Icon(securePassword
+                          ? Icons.remove_red_eye_rounded
+                          : Icons.visibility_off_rounded),
+                    )
                   : null,
               border: OutlineInputBorder(
                 borderSide: const BorderSide(
