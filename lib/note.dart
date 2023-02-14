@@ -99,114 +99,147 @@ class NoteState extends State<Note> {
               );
             }
             final notes = snapshot.data!.docs;
-            return SizedBox(
-              height: screenHeight * 2,
-              width: screenWidht,
-              child: ListView.builder(
-                itemCount: notes.length,
-                itemBuilder: (context, index) {
-                  final note = notes[index];
-                  return ListTile(
-                    title: Padding(
-                      padding: EdgeInsets.all(padding),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(note.data()['NoteContent']),
-                          Row(
+            return Dismissible(
+              key: Key(
+                notes.toString(),
+              ),
+              onDismissed: (direction) {
+                // Remove the item from the data source.
+                setState(() {
+                  notes.removeAt(snapshot as int);
+                });
+              },
+              child: SizedBox(
+                height: screenHeight * 2,
+                width: screenWidht,
+                child: ListView.builder(
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    final note = notes[index];
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.orangeAccent,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(screenWidht * 0.02),
+                        ),
+                      ),
+                      //color: Colors.blueAccent,
+                      margin: EdgeInsets.all(screenWidht * 0.02),
+                      child: ListTile(
+                        title: Padding(
+                          padding: EdgeInsets.all(padding),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Get.defaultDialog(
-                                      title: "update note",
-                                      content: TextField(
-                                        decoration: InputDecoration(
-                                          hintText: "Type here to update",
-                                          border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Colors.black),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(
-                                                  screenWidht * 0.02),
-                                            ),
-                                          ),
-                                        ),
-                                        controller: _noteController,
-                                        enableIMEPersonalizedLearning: true,
-                                        onChanged: (value) {
-                                          if(value!=''){
-                                             updateNote(notes[index].id,
-                                                  currentUser.email.toString());
-                                          }
-                                        },
-                                      ),
-                                      actions: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            if (_noteController.text == "") {
-                                              error("Note can't be empty");
-                                            } else {
-                                              updateNote(notes[index].id,
-                                                  currentUser.email.toString());
-
-                                              Get.back();
-                                              success("Note Updated");
-                                            }
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.blue,
-                                              borderRadius:
-                                                  BorderRadius.circular(
+                              Expanded(
+                                child: Text(
+                                  note.data()['NoteContent'],
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.defaultDialog(
+                                          title: "update note",
+                                          content: TextField(
+                                            decoration: InputDecoration(
+                                              hintText: "Type here to update",
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                    color: Colors.black),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(
                                                       screenWidht * 0.02),
+                                                ),
+                                              ),
                                             ),
-                                            child: Icon(
-                                              Icons.edit,
-                                              size: iconSize,
-                                            ),
+                                            controller: _noteController,
+                                            enableIMEPersonalizedLearning: true,
+                                            onChanged: (value) {
+                                              if (value != '') {
+                                                updateNote(
+                                                    notes[index].id,
+                                                    currentUser.email
+                                                        .toString());
+                                              }
+                                            },
                                           ),
-                                        ),
-                                      ]);
-                                },
-                                child: Icon(
-                                  Icons.edit,
-                                  color: Colors.greenAccent,
-                                  size: iconSize,
-                                ),
-                              ),
-                              SizedBox(
-                                width: space,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  // get docs id/delete note
-                                  Get.defaultDialog(
-                                    title: "Your note will deleted ",
-                                    content: const Text("confirme"),
-                                    onConfirm: () {
-                                      deleteNote(notes[index].id,
-                                          currentUser.email.toString());
-                                      Get.back();
-                                      success("Note deleted");
+                                          actions: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                if (_noteController.text ==
+                                                    "") {
+                                                  error("Note can't be empty");
+                                                } else {
+                                                  updateNote(
+                                                      notes[index].id,
+                                                      currentUser.email
+                                                          .toString());
+
+                                                  Get.back();
+                                                  success("Note Updated");
+                                                }
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.blue,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          screenWidht * 0.02),
+                                                ),
+                                                child: Icon(
+                                                  Icons.edit,
+                                                  size: iconSize,
+                                                ),
+                                              ),
+                                            ),
+                                          ]);
                                     },
-                                    onCancel: () {
-                                      Get.back();
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Colors.greenAccent,
+                                      size: iconSize,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: space,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      // get docs id/delete note
+                                      Get.defaultDialog(
+                                        title: "Your note will deleted ",
+                                        content: const Text("confirme"),
+                                        onConfirm: () {
+                                          deleteNote(notes[index].id,
+                                              currentUser.email.toString());
+                                          Get.back();
+                                          success("Note deleted");
+                                        },
+                                        onCancel: () {
+                                          Get.back();
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                                child: Icon(
-                                  Icons.delete_forever,
-                                  color: Colors.red,
-                                  size: iconSize,
-                                ),
+                                    child: Icon(
+                                      Icons.delete_forever,
+                                      color: Colors.red,
+                                      size: iconSize,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             );
           },
