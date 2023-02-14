@@ -12,7 +12,6 @@ class Note extends StatefulWidget {
 }
 
 class NoteState extends State<Note> {
-
   // note Controller
   final _noteController = TextEditingController();
   // add note function
@@ -50,12 +49,12 @@ class NoteState extends State<Note> {
   }
 
   // Dispose
-  @override 
-  void dispose(){
+  @override
+  void dispose() {
     _noteController.dispose();
     super.dispose();
     //...
-}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +69,9 @@ class NoteState extends State<Note> {
 
     return Scaffold(
       appBar: AppBar(
-        //toolbarHeight: 100,
-        leading: Row(
-          children: [
-            Text(
-              currentUser.email.toString(),
-            ),
-          ],
+        title: Text(
+          currentUser.email.toString(),
         ),
-
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +89,9 @@ class NoteState extends State<Note> {
       ),
       body: SingleChildScrollView(
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection(currentUser.email.toString()).snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection(currentUser.email.toString())
+              .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
@@ -137,6 +132,13 @@ class NoteState extends State<Note> {
                                           ),
                                         ),
                                         controller: _noteController,
+                                        enableIMEPersonalizedLearning: true,
+                                        onChanged: (value) {
+                                          if(value!=''){
+                                             updateNote(notes[index].id,
+                                                  currentUser.email.toString());
+                                          }
+                                        },
                                       ),
                                       actions: [
                                         GestureDetector(
@@ -144,7 +146,8 @@ class NoteState extends State<Note> {
                                             if (_noteController.text == "") {
                                               error("Note can't be empty");
                                             } else {
-                                              updateNote(notes[index].id, currentUser.email.toString());
+                                              updateNote(notes[index].id,
+                                                  currentUser.email.toString());
 
                                               Get.back();
                                               success("Note Updated");
@@ -181,7 +184,8 @@ class NoteState extends State<Note> {
                                     title: "Your note will deleted ",
                                     content: const Text("confirme"),
                                     onConfirm: () {
-                                      deleteNote(notes[index].id, currentUser.email.toString());
+                                      deleteNote(notes[index].id,
+                                          currentUser.email.toString());
                                       Get.back();
                                       success("Note deleted");
                                     },

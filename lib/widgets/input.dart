@@ -38,7 +38,7 @@ class _InputState extends State<Input> {
           padding: EdgeInsets.all(screenHeight * 0.002),
           child: TextField(
             controller: widget.inputController,
-            obscureText: securePassword,
+            obscureText: widget.obscureText ? securePassword : !securePassword,
             onChanged: (value) {
               if (value.length < 6 && value.isNotEmpty) {
                 widget.obscureText

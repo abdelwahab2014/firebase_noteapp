@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             _passwordConfirmeController.text.trim()) {
                           signUp();
                         } else {
-                          error("Password mismatch");
+                          error("Password didn't match");
                         }
                       } else {
                         error("Fill out fields");
