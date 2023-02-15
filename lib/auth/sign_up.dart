@@ -21,7 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
         password: _passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      error(e.toString());
+      error(e.message.toString());
     }
   }
 
@@ -53,11 +53,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   width: imageWidth,
                   height: imageHeight,
-                  child: Image.asset("images/signup.png", fit: BoxFit.contain),
+                  child: Image.asset("images/signUpImage.png", fit: BoxFit.contain),
                 ),
                 // userName
                 Input(
-                  hintText: "Enter your name ",
+                  hintText: "Full name ",
                   inputController: _nameController,
                   obscureText: false,
                 ),
@@ -99,17 +99,17 @@ class _SignUpPageState extends State<SignUpPage> {
                             _passwordConfirmeController.text.trim()) {
                           signUp();
                         } else {
-                          error("Password didn't match");
+                          error("Password don't match");
                         }
                       } else {
-                        error("Fill out fields");
+                        error("Fill out all fields");
                       }
                     }
                   },
                   child: const Text("Sign Up"),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.03,
+                  height: screenHeight * 0.05,
                 ),
                 Row(
                   children: [

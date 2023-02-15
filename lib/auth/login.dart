@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      error(e.toString());
+      error(e.message.toString());
     }
   }
 
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   width: imageWidth,
                   height: imageHeight,
-                  child: Image.asset("images/note.png", fit: BoxFit.contain),
+                  child: Image.asset("images/login.png", fit: BoxFit.contain),
                 ),
                 // Email
                 Input(

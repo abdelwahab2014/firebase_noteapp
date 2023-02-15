@@ -19,6 +19,7 @@ class Input extends StatefulWidget {
 
 class _InputState extends State<Input> {
   bool _showError = false;
+  bool _showEye = false;
   bool securePassword = true;
   @override
   Widget build(BuildContext context) {
@@ -44,11 +45,13 @@ class _InputState extends State<Input> {
                 widget.obscureText
                     ? setState(() {
                         _showError = true;
+                        _showEye = true;
                       })
                     : null;
               } else {
                 setState(() {
                   _showError = false;
+                  _showEye = false;
                 });
               }
             },
@@ -78,8 +81,8 @@ class _InputState extends State<Input> {
                         });
                       },
                       child: Icon(securePassword
-                          ? Icons.remove_red_eye_rounded
-                          : Icons.visibility_off_rounded),
+                          ?_showEye? Icons.remove_red_eye_rounded:null
+                          :_showEye? Icons.visibility_off_rounded:null),
                     )
                   : null,
               border: OutlineInputBorder(

@@ -18,7 +18,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       success("Reset link sent");
       // ignore: unused_catch_clause
     } on FirebaseAuthException catch (e) {
-      error("Email not exist");
+      error(e.message.toString());
     }
   }
 

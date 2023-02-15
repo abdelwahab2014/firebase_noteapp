@@ -15,6 +15,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         body: StreamBuilder<User?>(
+          // check if your user  auth State Changes or not 
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
