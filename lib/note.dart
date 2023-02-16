@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/model/colors.dart';
 import 'package:get/get.dart';
 import 'widgets/success_error.dart';
 
@@ -58,7 +59,6 @@ class NoteState extends State<Note> {
   }
 
   @override
-  
   Widget build(BuildContext context) {
     double screenWidht = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.width;
@@ -72,6 +72,7 @@ class NoteState extends State<Note> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title: Text(
           currentUser.email.toString(),
         ),
@@ -83,7 +84,7 @@ class NoteState extends State<Note> {
                 onPressed: () => FirebaseAuth.instance.signOut(),
                 icon: const Icon(
                   Icons.logout_rounded,
-                  color: Colors.red,
+                  color: MyColors.whiteColor,
                 ),
               ),
             ],
@@ -111,7 +112,7 @@ class NoteState extends State<Note> {
                   final note = notes[index];
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: Colors.deepPurple,
                       borderRadius: BorderRadius.all(
                         Radius.circular(screenWidht * 0.02),
                       ),
@@ -176,7 +177,7 @@ class NoteState extends State<Note> {
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: Colors.blue,
+                                                color: Colors.deepPurple,
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         screenWidht * 0.02),
@@ -191,7 +192,7 @@ class NoteState extends State<Note> {
                                   },
                                   child: Icon(
                                     Icons.edit,
-                                    color: Colors.white,
+                                    color: Colors.greenAccent,
                                     size: iconSize,
                                   ),
                                 ),
@@ -218,7 +219,7 @@ class NoteState extends State<Note> {
                                   },
                                   child: Icon(
                                     Icons.delete_forever,
-                                    color: Colors.white,
+                                    color: Colors.red,
                                     size: iconSize,
                                   ),
                                 ),
@@ -282,6 +283,7 @@ class NoteState extends State<Note> {
                     child: Icon(
                       Icons.add,
                       size: iconSize,
+                      color: Colors.greenAccent,
                     ),
                   ),
                 ),
