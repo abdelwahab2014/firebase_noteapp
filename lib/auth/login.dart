@@ -1,5 +1,5 @@
 import '../../model/import.dart';
-import 'forgot_password.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,23 +35,34 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double imageWidth = screenWidth * 0.8;
-    double imageHeight = screenHeight * 0.4;
+    // double imageWidth = screenWidth * 0.8;
+    // double imageHeight = screenHeight * 0.4;
     double space = screenHeight * 0.02;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
+            height: screenHeight,
+            decoration:  BoxDecoration(
+              gradient: bgContainer,
+
+              // image: DecorationImage(
+              //     image: AssetImage('images/bg.jpg'), fit: BoxFit.cover),
+            ),
             padding: EdgeInsets.all(screenWidth * 0.05),
             child: Column(
               children: [
-                SizedBox(
-                  width: imageWidth,
-                  height: imageHeight,
-                  child: Image.asset("images/login.png", fit: BoxFit.contain),
-                ),
+                // Login image
+                // SizedBox(
+                //   width: imageWidth,
+                //   height: imageHeight,
+                //   child: Image.asset("images/login.png", fit: BoxFit.contain),
+                // ),
                 // Email
+                SizedBox(
+                  height: screenHeight / 3,
+                ),
                 Input(
                   hintText: "Enter Email",
                   inputController: _emailController,
@@ -80,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         Get.to(() => const ForgotPassword());
                       },
                       child: const Text(
-                        "Forgotten Password",
+                        "Forgotten Password?",
                         style: MyStyles.textStyle,
                       ),
                     ),
@@ -115,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: space * 0.2,
                 ),
 
+// User not/have account
                 Padding(
                   padding: EdgeInsets.all(screenWidth * 0.05),
                   child: Row(
@@ -123,8 +135,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: space * 0.2,
                       ),
                       Text(
-                        "Didn't have an account \t",
-                        style: TextStyle(fontSize: screenWidth * 0.04),
+                        "Didn't have an account? \t",
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.04, color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -135,12 +148,13 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "SignUp",
                           style: TextStyle(
-                              color: Colors.blue, fontSize: screenWidth * 0.04),
+                              color: Colors.white,
+                              fontSize: screenWidth * 0.04),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

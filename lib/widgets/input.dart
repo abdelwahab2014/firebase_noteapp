@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/model/colors.dart';
 import '../model/import.dart';
 
 class Input extends StatefulWidget {
@@ -81,8 +82,12 @@ class _InputState extends State<Input> {
                         });
                       },
                       child: Icon(securePassword
-                          ?_showEye? Icons.remove_red_eye_rounded:null
-                          :_showEye? Icons.visibility_off_rounded:null),
+                          ? _showEye
+                              ? Icons.remove_red_eye_rounded
+                              : null
+                          : _showEye
+                              ? Icons.visibility_off_rounded
+                              : null),
                     )
                   : null,
               border: OutlineInputBorder(
@@ -101,8 +106,8 @@ class _InputState extends State<Input> {
           Padding(
             padding: EdgeInsets.all(screenWidth * 0.01),
             child: const Text(
-              "Password less than 6",
-              style: MyStyles.textErrorStyle,
+              "Password length less than 6",
+              style: TextStyle(color: MyColors.whiteColor),
             ),
           )
       ],

@@ -9,3 +9,6 @@ export '../../model/styles.dart';
 
 export 'package:get/get.dart';
 export '../../controller/controller.dart';
+
+export '../model/bg.dart';
+export '../auth/forgot_password.dart';

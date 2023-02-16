@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/model/colors.dart';
+
 import '../../model/import.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -38,23 +40,29 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double imageWidth = screenWidth * 0.6;
-    double imageHeight = screenHeight * 0.3;
+    // double imageWidth = screenWidth * 0.6;
+    // double imageHeight = screenHeight * 0.3;
     //double fontSize = screenWidth * 0.02;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          child: Padding(
+          child: Container(
+            height: screenHeight,
+            decoration: BoxDecoration(gradient: bgContainer),
             padding: EdgeInsets.all(screenWidth * 0.05),
+            //padding: EdgeInsets.all(screenWidth * 0.05),
             child: Column(
               children: [
-                // image
                 SizedBox(
-                  width: imageWidth,
-                  height: imageHeight,
-                  child: Image.asset("images/signUpImage.png", fit: BoxFit.contain),
+                  height: screenHeight / 4,
                 ),
+                // image
+                // SizedBox(
+                //   width: imageWidth,
+                //   height: imageHeight,
+                //   child: Image.asset("images/signUpImage.png", fit: BoxFit.contain),
+                // ),
                 // userName
                 Input(
                   hintText: "Full name ",
@@ -114,8 +122,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 Row(
                   children: [
                     Text(
-                      "Already have an account \t",
-                      style: TextStyle(fontSize: screenWidth * 0.04),
+                      "Already have an account? \t",
+                      style: TextStyle(
+                          fontSize: screenWidth * 0.04,
+                          color: MyColors.whiteColor),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -126,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: Text(
                         "Sign In",
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.white,
                           fontSize: screenWidth * 0.04,
                         ),
                       ),
