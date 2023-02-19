@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_application_1/model/colors.dart';
-//import 'package:firebase_database/firebase_database.dart';
+
 import '../../model/import.dart';
 
 class SignUpPage extends StatefulWidget {

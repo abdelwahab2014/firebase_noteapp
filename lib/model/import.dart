@@ -12,3 +12,8 @@ export '../../controller/controller.dart';
 
 export '../model/bg.dart';
 export '../auth/forgot_password.dart';
+
+
+export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:flutter/services.dart';
+export 'package:flutter_application_1/model/colors.dart';

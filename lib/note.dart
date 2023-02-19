@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/model/colors.dart';
 import 'package:get/get.dart';
+import 'auth/note_operation.dart';
 import 'model/bg.dart';
 import 'widgets/success_error.dart';
 
@@ -17,13 +18,17 @@ class Note extends StatefulWidget {
 class NoteState extends State<Note> {
   // note Controller
   final _noteController = TextEditingController();
+
   // add note function
-  Future addNote(String collectionName) async {
-    await FirebaseFirestore.instance.collection(collectionName).add({
-      // key: value here!!
-      'NoteContent': _noteController.text.trim(),
-    });
-  }
+ // String textNote = _noteController.text.trim();
+ // addNote(collectionName, _noteController) {}
+
+  // Future addNote(String collectionName,) async {
+  //   await FirebaseFirestore.instance.collection(collectionName).add({
+  //     // key: value here!!
+  //     'NoteContent': _noteController.text.trim(),
+  //   });
+  // }
 
   //Delete Note
   Future deleteNote(String docsID, String collectionName) async {
@@ -187,6 +192,7 @@ class NoteState extends State<Note> {
                                               child: Icon(
                                                 Icons.edit,
                                                 size: iconSize,
+                                                color: Colors.white,
                                               ),
                                             ),
                                           ),
@@ -207,16 +213,43 @@ class NoteState extends State<Note> {
                                     // get docs id/delete note
                                     Get.defaultDialog(
                                       title: "Your note will deleted ",
-                                      content: const Text("confirme"),
-                                      onConfirm: () {
-                                        deleteNote(notes[index].id,
-                                            currentUser.email.toString());
-                                        Get.back();
-                                        success("Note deleted");
-                                      },
-                                      onCancel: () {
-                                        Get.back();
-                                      },
+                                      content: const Text(""),
+
+                                      // Cancel & confirme button
+                                      actions: <Widget>[
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.back();
+                                          },
+                                          child: Icon(
+                                            Icons.cancel_rounded,
+                                            color: Colors.blue,
+                                            size: iconSize,
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            deleteNote(notes[index].id,
+                                                currentUser.email.toString());
+                                            Get.back();
+                                            success("Note deleted");
+                                          },
+                                          child: Icon(
+                                            Icons.check_circle_outline,
+                                            color: Colors.red,
+                                            size: iconSize,
+                                          ),
+                                        ),
+                                      ],
+                                      // onConfirm: () {
+                                      //   deleteNote(notes[index].id,
+                                      //       currentUser.email.toString());
+                                      //   Get.back();
+                                      //   success("Note deleted");
+                                      // },
+                                      // onCancel: () {
+
+                                      // },
                                     );
                                   },
                                   child: Icon(
@@ -272,7 +305,7 @@ class NoteState extends State<Note> {
                     if (_noteController.text == "") {
                       error("Note can't be empty");
                     } else {
-                      addNote(currentUser.email.toString());
+                      addNote(currentUser.email.toString(), _noteController.text.trim());
 
                       Get.back();
                       success("Note added");
