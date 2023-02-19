@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/model/colors.dart';
 import 'package:get/get.dart';
+import 'model/bg.dart';
 import 'widgets/success_error.dart';
 
 class Note extends StatefulWidget {
@@ -112,7 +113,8 @@ class NoteState extends State<Note> {
                   final note = notes[index];
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                      gradient: noteBG,
+                      //  color: const Color.fromARGB(255, 167, 132, 233),
                       borderRadius: BorderRadius.all(
                         Radius.circular(screenWidht * 0.02),
                       ),
@@ -238,6 +240,7 @@ class NoteState extends State<Note> {
       ),
       // Add note here
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
         onPressed: () {
           Get.defaultDialog(
               title: "Add note",
@@ -277,7 +280,7 @@ class NoteState extends State<Note> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(screenWidht * 0.02),
                     ),
                     child: Icon(

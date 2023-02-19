@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   firebase_auth: ^4.2.6
   cloud_firestore: ^4.3.2
+  firebase_database: ^10.0.11
 
 
 dev_dependencies:

@@ -42,17 +42,26 @@ class _InputState extends State<Input> {
             controller: widget.inputController,
             obscureText: widget.obscureText ? securePassword : !securePassword,
             onChanged: (value) {
+              // Show and hide eye
+              if (value.isNotEmpty) {
+                setState(() {
+                  _showEye = true;
+                });
+              } else {
+                setState(() {
+                  _showEye = false;
+                });
+              }
+              // show error for pw length
               if (value.length < 6 && value.isNotEmpty) {
                 widget.obscureText
                     ? setState(() {
                         _showError = true;
-                        _showEye = true;
                       })
                     : null;
               } else {
                 setState(() {
                   _showError = false;
-                  _showEye = false;
                 });
               }
             },

@@ -1,5 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/model/colors.dart';
-
+//import 'package:firebase_database/firebase_database.dart';
 import '../../model/import.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -16,12 +17,20 @@ class _SignUpPageState extends State<SignUpPage> {
   final _passwordController = TextEditingController();
   final _passwordConfirmeController = TextEditingController();
 
+  Future addUser(String collectionName) async {
+    await FirebaseFirestore.instance.collection("UserName").add({
+      // key: value here!!
+      'userName': _nameController.text.trim(),
+    });
+  }
+
   Future signUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      addUser(_emailController.text.trim());
     } on FirebaseAuthException catch (e) {
       error(e.message.toString());
     }
@@ -38,11 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    //final currentUser = FirebaseAuth.instance.currentUser!;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    // double imageWidth = screenWidth * 0.6;
-    // double imageHeight = screenHeight * 0.3;
-    //double fontSize = screenWidth * 0.02;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -57,12 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: screenHeight / 4,
                 ),
-                // image
-                // SizedBox(
-                //   width: imageWidth,
-                //   height: imageHeight,
-                //   child: Image.asset("images/signUpImage.png", fit: BoxFit.contain),
-                // ),
+
                 // userName
                 Input(
                   hintText: "Full name ",
@@ -106,6 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         if (_passwordController.text.trim() ==
                             _passwordConfirmeController.text.trim()) {
                           signUp();
+                          // addUserName(_emailController.text.trim());
                         } else {
                           error("Password don't match");
                         }

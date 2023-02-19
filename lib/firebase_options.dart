@@ -48,6 +48,7 @@ class DefaultFirebaseOptions {
     appId: '1:590671549171:web:3ebd0e726c08102e0f5d86',
     messagingSenderId: '590671549171',
     projectId: 'note-737e1',
+    databaseURL:'https://note-737e1-default-rtdb.firebaseio.com/',
     authDomain: 'note-737e1.firebaseapp.com',
     storageBucket: 'note-737e1.appspot.com',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDmeEga5CnTZet5NXvCn10EZPGfuFWNt4U',
     appId: '1:590671549171:android:d6defd364ed1c1b40f5d86',
+    databaseURL:'https://note-737e1-default-rtdb.firebaseio.com/',
     messagingSenderId: '590671549171',
     projectId: 'note-737e1',
     storageBucket: 'note-737e1.appspot.com',
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     appId: '1:590671549171:ios:804e17b9a29c23a80f5d86',
     messagingSenderId: '590671549171',
     projectId: 'note-737e1',
+    databaseURL:'https://note-737e1-default-rtdb.firebaseio.com/',
     storageBucket: 'note-737e1.appspot.com',
     iosClientId: '590671549171-bgm3g630hvaggjem5glqh7qc8al1i9i7.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterApplication1',
@@ -74,6 +77,7 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyB6ANpuzL0DlMwnSCvJ0BIpUMmj2S05chA',
     appId: '1:590671549171:ios:804e17b9a29c23a80f5d86',
     messagingSenderId: '590671549171',
+    databaseURL:'https://note-737e1-default-rtdb.firebaseio.com/',
     projectId: 'note-737e1',
     storageBucket: 'note-737e1.appspot.com',
     iosClientId: '590671549171-bgm3g630hvaggjem5glqh7qc8al1i9i7.apps.googleusercontent.com',

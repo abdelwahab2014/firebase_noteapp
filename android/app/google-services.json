@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "590671549171",
+    "firebase_url": "https://note-737e1-default-rtdb.firebaseio.com",
     "project_id": "note-737e1",
     "storage_bucket": "note-737e1.appspot.com"
   },
@@ -46,6 +47,42 @@
         "mobilesdk_app_id": "1:590671549171:android:9591118d7d416a750f5d86",
         "android_client_info": {
           "package_name": "com.example.note"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590671549171-vjrpn6su2rhfuc45teisf029oksjjs7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmeEga5CnTZet5NXvCn10EZPGfuFWNt4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590671549171-vjrpn6su2rhfuc45teisf029oksjjs7v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "590671549171-5om8roahau0iiirg045b5eg15cm6i93u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.note"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590671549171:android:7cc06f4df5d084ba0f5d86",
+        "android_client_info": {
+          "package_name": "com.example.upload"
         }
       },
       "oauth_client": [
